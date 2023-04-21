@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Dashboard from "./Dashboard/Dashboard";
+import LoginForm from "./Login/LoginForm";
+import { BrowserRouter as Router, Switch, Route ,Redirect} from "react-router-dom";
+import RegisterForm from "./Register/RegisterForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/LoginForm" component={LoginForm} />
+        <Route exact path="/RegisterForm" component={RegisterForm} />
+        <Route
+          render={(props) => (localStorage.getItem('token') ? <Dashboard {...props} /> : <Redirect to="/LoginForm" />)}
+        />
+      </Switch>
+    </Router>
   );
 }
-
 export default App;
