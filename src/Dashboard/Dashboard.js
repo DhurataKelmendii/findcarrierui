@@ -3,10 +3,10 @@ import UsersList from "../User/UsersList";
 import Home from "../Home";
 import LoginForm from "../Login/LoginForm";
 import RegisterForm from "../Register/RegisterForm";
+import University from "../University/University";
+import Job from "../Job/Job";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
-import {
-  Container
-} from "reactstrap";
+import { Container } from "reactstrap";
 
 function Dashboard() {
   const token = localStorage.getItem('token');
@@ -86,8 +86,12 @@ function Dashboard() {
         <div className="col-lg-12 Services">
             <h1 className="title">Services</h1>
             <div className="row">
-           <div className="col-lg-6 Garage">Garage</div>
-           <div className="col-lg-6 Reservation">Reservation</div>
+           <div className="col-lg-6 University">Find your UNIVERSITY
+           <Link to={"/University"} className="nav-link"></Link>
+           </div>
+           <div className="col-lg-6 Job">Find your JOB
+           <Link to={"/Job"} className="nav-link"></Link>
+           </div>
            </div>
         </div>
         </div>
@@ -124,9 +128,10 @@ function Dashboard() {
         <Route exact path="/Home" component={Home} />
         <Route exact path="/RegisterForm" component={RegisterForm} />
         <Route path="/UsersList" component={UsersList} />
+        <Route path="/University" component={University} />
+        <Route path="/Job" component={Job} />
       </Switch>
     </Router>
-
 
   );
 }

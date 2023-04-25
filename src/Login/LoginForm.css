@@ -1,4 +1,4 @@
-.Appp {
+.App {
   border-radius: 5px;
   padding: 44px;
   background-color: rgba(250, 250, 250, 0.888);
@@ -10,13 +10,27 @@
   padding: 15px;
   margin: auto;
 }
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: calc(var(--bs-gutter-x) * -.5);
+}
 .form-signin-bg {
   border-radius: 5px;
   min-width: 400px;
   padding: 40px 50px;
   background-color: rgba(250, 250, 250, 0.888);
 }
-
+.fw-normal {
+  font-weight: 400!important;
+}
+.mb-3 {
+  margin-bottom: 1rem!important;
+}
 .form-signin .checkbox {
   font-weight: 400;
   margin-left: 5px;
@@ -49,6 +63,4 @@ a.register-link {
 a.signup-btn {
   text-decoration: none;
   color: #0d6efd;
-}
-.col {
 }

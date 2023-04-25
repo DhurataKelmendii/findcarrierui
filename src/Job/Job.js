@@ -1,19 +1,19 @@
 import react, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import "./LoginForm.css";
+import "./Job.css";
 import { Container, Col, Form, Row, FormGroup, Label, Input } from "reactstrap";
 
-function LoginForm() {
+function Job() {
   const [dataUser, setData] = useState({
     Email: "",
     Password: "",
   });
 
   const history = useHistory();
-  const LoginForm = () => {
+  const Job = () => {
     axios
-      .post("http://localhost:44366/Api/User/Login/", dataUser)
+      .post("http://localhost:44366/Api/Job/Job/", dataUser)
       .then((response) => {
         if (response.data) {
           alert("You're logged in!");
@@ -72,7 +72,7 @@ function LoginForm() {
           <Col className="col">
             <button
               type="button"
-              onClick={() => LoginForm()}
+              onClick={() => Job()}
               className="btn btn-primary"
             >
               Sign in
@@ -90,4 +90,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default Job;
