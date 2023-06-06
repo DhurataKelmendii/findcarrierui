@@ -13,7 +13,7 @@ function LoginForm() {
   const history = useHistory();
   const LoginForm = () => {
     axios
-      .post("http://localhost:44366/Api/User/Login/", dataUser)
+      .post("http://localhost:44366/Api/Authenticate/Login/", dataUser)
       .then((response) => {
         if (response.data) {
           alert("You're logged in!");

@@ -25,7 +25,7 @@ function RegisterForm() {
 
   const RegisterForm = () => {
     axios
-      .post("http://localhost:44366/Api/User/CreateUserApplication/", dataUser)
+      .post("http://localhost:44366/Api/Authenticate/Register/", dataUser)
       .then((json) => {
         if (json.data) {
           alert("Data Save Successfully");

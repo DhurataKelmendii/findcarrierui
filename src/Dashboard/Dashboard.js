@@ -6,15 +6,21 @@ import RegisterForm from "../Register/RegisterForm";
 import University from "../University/University";
 import Job from "../Job/Job";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
-import { Container } from "reactstrap";
+import { Container, Button } from "reactstrap";
 
 function Dashboard() {
   const token = localStorage.getItem('token');
   const history = useHistory();
+
+  const University = () => {
+    history.push('/University/University');  
+  };
+
   const logOut = () => {
     localStorage.removeItem('token');
     history.push('/LoginForm');
   };
+
 
   return (
     <Router>
@@ -72,9 +78,6 @@ function Dashboard() {
                 )}
               </li>
               <li className="nav-item ">
-                <Link to={"/RegisterForm"} className="nav-link">
-                  Sign up
-                </Link>
               </li>
             </ul>
           </div>
@@ -84,17 +87,24 @@ function Dashboard() {
       <Container className="Services"> 
       <div className="row">
         <div className="col-lg-12 Services">
-            <h1 className="title">Services</h1>
+            <h1 className="title">CHOOSE YOUR FUTURE</h1>
             <div className="row">
-           <div className="col-lg-6 University">Find your UNIVERSITY
-           <Link to={"/University"} className="nav-link"></Link>
-           </div>
-           <div className="col-lg-6 Job">Find your JOB
-           <Link to={"/Job"} className="nav-link"></Link>
-           </div>
-           </div>
+              <div className="col-lg-5 University">
+                <h3>Find your UNIVERSITY</h3>
+                <p onClick={() => University()} className="nav-link">
+                Click here</p>
+                  <Link to={"/University/University"} className="nav-link"></Link>
+              </div>
+              <div className="col-lg-5 Job">
+                <h3>Find your JOB</h3>
+                  <Button>
+                  <Link to={"/Job"} className="nav-link"></Link>
+                    Click here 
+                  </Button>
+              </div>
+            </div>
         </div>
-        </div>
+      </div>
       </Container>
       <br/>
       <br/>

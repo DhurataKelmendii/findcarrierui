@@ -69,7 +69,7 @@ a.linki {
   height: 50px;
   color: white;
   text-decoration: none;
-  margin-top: 4rem;
+  margin-top: 11rem;
 }
 
 .Footer {
@@ -78,7 +78,7 @@ a.linki {
   height: 50px;
   color: white;
   text-decoration: none;
-  margin-top: 10rem;
+  margin-top: 6rem;
 }
 
 .Services {
@@ -93,6 +93,8 @@ a.linki {
 .University {
   border-radius: 15px;
   padding: 80px;
+  margin-left: 50px;
+  margin-right: 100px;
   background-color: rgba(250, 250, 250, 0.666);
   color: rgb(119, 108, 108);
 }
@@ -101,4 +103,10 @@ a.linki {
   padding: 80px;
   background-color: rgba(250, 250, 250, 0.666);
   color: rgb(139, 133, 133);
+}
+.button{
+  text-decoration: none;
+}
+h3{
+color: white;
 }
