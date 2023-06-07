@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function University() {
+function UniversitiesList() {
   const [business, setbussines] = useState();
   const [status, setStatus] = useState();
 
   const getData = () => {
+    const token = localStorage.getItem("authToken");
+    console.log("Token:", token);
     axios
-      .get("http://localhost:44366/Api/University/UniversitiesList")
+      .get("http://localhost:44366/Api/University/UniversitiesList", {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the JWT in the request headers
+      },
+    })
       .then((response) => {
+        const token = response.data.token;
+        localStorage.setItem("authToken", token);
         setbussines(response.data.universities);
       })
       .catch((error) => {
@@ -16,20 +24,29 @@ function University() {
       });
   };
 
-  const deleteUser = (id) => {
+  const deleteUniversity = (id) => {
+    const token = localStorage.getItem("token");
     axios
-      .post(`http://localhost:44366/Api/User/DeleteUser/${id}`)
-      .then((res) => {
-        console.log("res", res);
-        if (res.data) {
-          getData();
-          setStatus(res.data);
-          setTimeout(() => {
-            setStatus(null);
-          }, 4000);
-          alert("Record deleted successfully!!");
-        }
-      });
+    .post(
+      `http://localhost:44366/Api/User/DeleteUniversity/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log("res", res);
+      if (res.data) {
+        getData();
+        setStatus(res.data);
+        setTimeout(() => {
+          setStatus(null);
+        }, 4000);
+        alert("Record deleted successfully!!");
+      }
+    });
   };
   useEffect(() => {
     getData();
@@ -37,7 +54,7 @@ function University() {
 
   return (
     <div className="containerr">
-      <h4 align="center">Users List</h4>
+      <h4 align="center">Universities List</h4>
       {status && <p className="color-red">Deleted successfully!</p>}
       <table className="table table-striped" style={{ marginTop: 10 }}>
         <thead>
@@ -53,7 +70,7 @@ function University() {
               <td>
                 <button
                   type="button"
-                  onClick={() => deleteUser(el.id)}
+                  onClick={() => deleteUniversity(el.id)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -66,4 +83,4 @@ function University() {
     </div>
   );
 }
-export default University;
+export default UniversitiesList;

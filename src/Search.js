@@ -1,27 +1,36 @@
 import React from "react";
-import UsersList from "../User/UsersList";
-import Home from "../Home";
-import LoginForm from "../Login/LoginForm";
-import RegisterForm from "../Register/RegisterForm";
-import Job from "../Job/Job";
+import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
-import { Container } from "reactstrap";
+import { Container, Button } from "reactstrap";
 import UniversitiesList from "../University/UniversitiesList";
 
-  function Dashboard() {
-    const token = localStorage.getItem('token');
+function Search() {
+   
     const history = useHistory();
 
-    // const University = () => {
-    //   history.push('/University/UniversitiesList');  
-    // };
-
-    const logOut = () => {
-      localStorage.removeItem('token');
-      history.push('/LoginForm');
-    };
+    const Search = () => {
+    const token = localStorage.getItem('token');
+    const [searchTerm1, setSearchTerm1] = useState('');
+    const [searchTerm2, setSearchTerm2] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    }
   
-  return (
+    const handleSearch = () => {
+    axios.post('/api/search', { searchTerm1, searchTerm2 })
+        .then(response => {
+        const searchResults = response.data;
+        setSearchResults(searchResults);
+        })
+        .catch(error => {
+        console.error(error);
+        });
+    };
+
+    useEffect(() => {
+        getData();
+      }, []);
+  
+    return (
     <Router>
       <nav className="navbar sticky-top navbar-expand-lg navbar-light">
         <div className="container-fluid">
@@ -83,24 +92,22 @@ import UniversitiesList from "../University/UniversitiesList";
         </div>
       </nav>
       <br />
-      <Container className="Services"> 
-      <div className="row">
-        <div className="col-lg-12 Services">
-            <h1 className="title">CHOOSE YOUR FUTURE</h1>
-            <div className="row">
-              <div className="col-lg-5 University">
-                <Link to={"/UniversitiesList"} className="link">
-                <h3>Find your UNIVERSITY</h3>
-                </Link>
-              </div>
-              <div className="col-lg-5 Job">
-                  <Link to={"/Job"} className="link">
-                  <h3>Find your JOB</h3>
-                  </Link>
-              </div>
-            </div>
-        </div>
-      </div>
+      <Container className="Search">
+      <div className="search-bar">
+        <input
+            type="text"
+            placeholder="Search term 1"
+            value={searchTerm1}
+            onChange={e => setSearchTerm1(e.target.value)}
+        />
+        <input
+            type="text"
+            placeholder="Search term 2"
+            value={searchTerm2}
+            onChange={e => setSearchTerm2(e.target.value)}
+        />
+            <button onClick={handleSearch}>Search</button>
+        </div>`
       </Container>
       <br/>
       <br/>
@@ -130,16 +137,13 @@ import UniversitiesList from "../University/UniversitiesList";
       
 
       <Switch>
-        <Route exact path="/LoginForm" component={LoginForm} />
         <Route exact path="/Home" component={Home} />
-        <Route exact path="/RegisterForm" component={RegisterForm} />
         <Route path="/UsersList" component={UsersList} />
         <Route path="/UniversitiesList" component={UniversitiesList} />
-        <Route path="/Job" component={Job} />
       </Switch>
     </Router>
 
-  );
-};
+    );
+  };
 
-export default Dashboard;
+export default Search;
