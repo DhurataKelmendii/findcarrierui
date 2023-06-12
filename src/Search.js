@@ -3,6 +3,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import { Container, Button } from "reactstrap";
 import UniversitiesList from "../University/UniversitiesList";
+import Home from "../Home";
 
 function Search() {
    
@@ -14,16 +15,16 @@ function Search() {
     const [searchTerm2, setSearchTerm2] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     }
-  
+
     const handleSearch = () => {
-    axios.post('/api/search', { searchTerm1, searchTerm2 })
-        .then(response => {
-        const searchResults = response.data;
-        setSearchResults(searchResults);
-        })
-        .catch(error => {
-        console.error(error);
-        });
+      axios.post('/api/search', { searchTerm1, searchTerm2 })
+          .then(response => {
+          const searchResults = response.data;
+          setSearchResults(searchResults);
+          })
+          .catch(error => {
+          console.error(error);
+          });
     };
 
     useEffect(() => {
@@ -107,20 +108,7 @@ function Search() {
             onChange={e => setSearchTerm2(e.target.value)}
         />
             <button onClick={handleSearch}>Search</button>
-        </div>`
-      </Container>
-      <br/>
-      <br/>
-      <Container className="AboutUs">
-      <div className="row">
-          <h1 className="title">About Us</h1>
-          <p className="content">
-              React has been designed from the start for gradual adoption, and you can use as little or 
-              as much React as you need. Whether you want to get a taste of React, 
-              add some interactivity to a simple HTML page, or start a complex React-powered app, 
-              the links in this section will help you get started.
-          </p>
-      </div>
+        </div>
       </Container>
       <br/>
       <Container className="Footer">

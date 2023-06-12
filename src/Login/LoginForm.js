@@ -17,7 +17,7 @@ function LoginForm() {
       .then((response) => {
         if (response.data) {
           alert("You're logged in!");
-          localStorage.setItem('token', 'true');
+          localStorage.setItem('token', response.data.token);
           history.push('/');
         } else {
           alert("User does not exist!");
@@ -67,7 +67,6 @@ function LoginForm() {
               <Input type="checkbox" label="Remember me" />
             </FormGroup>
           </Row>
-          {/* <Col className="w-100 btn btn-lg btn-primary"> */}
 
           <Col className="col">
             <button
