@@ -6,6 +6,7 @@ import Navbar from "../Nav/Navbar";
 import Services from "../Services/Services";
 import Footer from "../Footer/Footer";
 import AboutUs from "../AboutUs/AboutUs";
+import Search from "../Search/Search";
 
   function Dashboard() {
     const history = useHistory();
@@ -18,6 +19,7 @@ import AboutUs from "../AboutUs/AboutUs";
   return (
     <React.Fragment>
     <Navbar />
+    <Search />
     <Services />
     <AboutUs />
     <Footer />

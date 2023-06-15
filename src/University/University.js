@@ -6,7 +6,6 @@ const University = () => {
   const [university, setUniversity] = useState([]);
 
   useEffect(() => {
-    // Fetch the universities data from an API or any data source
     const token = localStorage.getItem("token");
     axios.get("http://localhost:44366/Api/University/UniversitiesList", {
       headers: {
@@ -22,23 +21,28 @@ const University = () => {
   }, []);
   return (
     <div>
-      <h1>Universities List</h1>
-      <div className="university-grid">
-        {university.map(university => (
-          <div className="university-card" key={university.id}>
-            <div className="logo-container">
-              <img src={university.logo} alt={university.name} className="logo" />
-            </div>
-            <div className="content">
-              <h5 className="university-name">{university.name}</h5>
-              <p className="location">{university.location}</p>
-              <p className="description">{university.description}</p>
-              <a href={university.website} className="website-link">Visit Website</a>
-            </div>
+  <h1 class="title">Universities List</h1>
+  <div className="col-lg-9 list">
+  <div className="row">
+    {university.map(university => (
+      <div className="col-lg-4 col-md-6" key={university.id}>
+        <div className="university-card">
+          <div className="logo-container">
+            <img src={university.logo} alt={university.name} className="logo" />
           </div>
-        ))}
+          <div className="content">
+            <h5 className="university-name">{university.name}</h5>
+            <p className="location">{university.location}</p>
+            <p className="description">{university.description}</p>
+            <a href={university.website} className="website-link">Visit Website</a>
+          </div>
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+  </div>
+</div>
+
   );
         
 };
